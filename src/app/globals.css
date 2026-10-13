@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+:root {
+  --void: #0b0b0f;
+  --paper: #f7f7f4;
+  --acid: #6c2bff;
+  --radio: #b8ff00;
+  --volt: #00c8ff;
+  --muted: #8a8a92;
+  --ink: #16161c;
+  --line: rgba(247, 247, 244, 0.12);
+  --line-dark: rgba(11, 11, 15, 0.12);
+  --header-h: 72px;
+}
+
+@theme inline {
+  --color-void: var(--void);
+  --color-paper: var(--paper);
+  --color-acid: var(--acid);
+  --color-radio: var(--radio);
+  --color-volt: var(--volt);
+  --color-muted: var(--muted);
+  --color-ink: var(--ink);
+  --font-display: var(--font-syne);
+  --font-body: var(--font-source);
+  --font-ui: var(--font-grotesk);
+  --font-mono: var(--font-plex);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--void);
+  color: var(--paper);
+  min-height: 100%;
+  cursor: var(--gg-cursor, auto);
+}
+
+body {
+  font-family: var(--font-body), "Georgia", serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  touch-action: manipulation;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+.prose-gg a {
+  color: var(--acid);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+::selection {
+  background: var(--radio);
+  color: var(--void);
+}
+
+:focus-visible {
+  outline: 2px solid var(--radio);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -40px;
+  z-index: 100;
+  background: var(--radio);
+  color: var(--void);
+  padding: 8px 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.hairline {
+  border-color: var(--line);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.prose-gg {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.prose-gg p + p {
+  margin-top: 1.35em;
+}
+
+.article-measure {
+  max-width: 740px;
+}
+
+.ad-slot {
+  display: grid;
+  place-items: center;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 6px,
+      rgba(138, 138, 146, 0.12) 6px,
+      rgba(138, 138, 146, 0.12) 7px
+    );
+  border: 1px dashed rgba(138, 138, 146, 0.45);
+  overflow: hidden;
+  flex-shrink: 0;
+  contain: strict;
+  isolation: isolate;
+}
+
+.gg-card {
+  transition: border-color 0.25s ease;
+}
+
+.gg-card:hover {
+  border-color: var(--radio);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
